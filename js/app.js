@@ -229,3 +229,53 @@ let mobileChart = new Chart(mobileCanvas, {
   data: mobileData,
   options: mobileOptions
 });
+
+// Local Storage For Settings
+// Settings Elements
+const emailSwitch = document.querySelector('.email-switch');
+const publicSwitch = document.querySelector('.public-switch');
+const timeZone = document.querySelector('#timezone');
+const saveBtn = document.querySelector('#save');
+const cancelBtn = document.querySelector('.button-cancel');
+
+// Get Settings From Local Storage
+function getSettingsFromStorage() {
+  let settings;
+
+  if (localStorage.getItem('settings') == null) {
+    settings = [];
+  }
+  else {
+    settings = JSON.parse(localStorage.getItem('settings'))
+  }
+
+  return settings;
+}
+
+// Set Settings To Local Storage
+function setSettingsInStorage(email, public, timeZoneValue) {
+  let settings = getSettingsFromStorage();
+  let mySettings = {
+    email,
+    public,
+    timeZoneValue
+  };
+
+  settings.push(mySettings);
+
+  localStorage.setItem('settings', JSON.stringify(settings));
+}
+
+// Save Settings Event Listener
+saveBtn.addEventListener('click', () => {
+  let email = emailSwitch.checked ? 'Send Email Notification: Yes' : 'Send Email Notification: No';
+  let public = publicSwitch.checked ? 'Set Profile To Public: Yes' : 'Set Profile To Public: No';
+  let timeZoneValue = timeZone.options[timeZone.selectedIndex].text;
+
+  setSettingsInStorage(email, public, timeZoneValue);
+})
+
+// Clear Local Storage
+cancelBtn.addEventListener('click', () => {
+  localStorage.clear();
+})
