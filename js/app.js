@@ -243,7 +243,7 @@ function getSettingsFromStorage() {
   let settings;
 
   if (localStorage.getItem('settings') == null) {
-    settings = [];
+    settings = '';
   }
   else {
     settings = JSON.parse(localStorage.getItem('settings'))
@@ -261,7 +261,7 @@ function setSettingsInStorage(email, public, timeZoneValue) {
     timeZoneValue
   };
 
-  settings.push(mySettings);
+  settings = mySettings;
 
   localStorage.setItem('settings', JSON.stringify(settings));
 }
@@ -275,7 +275,27 @@ saveBtn.addEventListener('click', () => {
   setSettingsInStorage(email, public, timeZoneValue);
 })
 
+// Load Settings On Page Load
+document.addEventListener('DOMContentLoaded', () => {
+  let settings = getSettingsFromStorage();
+
+  if (settings) {
+    if (settings.email === 'Send Email Notification: Yes' ) {
+      emailSwitch.checked = true;
+    }
+    if (settings.public === 'Set Profile To Public: Yes' ) {
+      publicSwitch.checked = true;
+    }
+    timeZone.value = settings.timeZoneValue;
+  }
+})
+
 // Clear Local Storage
 cancelBtn.addEventListener('click', () => {
+  // Clear Local Storage
   localStorage.clear();
+  // Reset Settings In UI
+  emailSwitch.checked = false;
+  publicSwitch.checked = false;
+  timeZone.value = '';
 })

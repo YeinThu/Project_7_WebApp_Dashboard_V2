@@ -258,11 +258,12 @@ nav {
 }
 
 .social-boxes {
-  display: flex;
+  display: grid;
   /* justify-content: space-around; */
   /* align-items: center; */
   /* Changes */
-  flex-direction: column;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 0.5rem;
 }
 
 .social-container {
@@ -271,7 +272,7 @@ nav {
   justify-content: space-between;
   border: 1px solid lightgray;
   border-radius: 5px;
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 0.75rem;
   /* width: 30%; */
   /* Changes */
   width: 100%;
@@ -284,12 +285,20 @@ nav {
   height: 100%;
   border-radius: 50%;
   padding: 0.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.social-image img {
+.social-image svg {
+  transform: scale(0.8);
+  margin-top: 3%;
+}
+
+/* .social-image img {
   vertical-align: middle;
   transform: scale(0.6);
-}
+} */
 
 /* New Members Section */
 .members {
@@ -580,7 +589,7 @@ select[class="form-field"] {
     grid-column: 1 / span 2;
   }
 
-  .social-boxes {
+  /* .social-boxes {
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -588,6 +597,27 @@ select[class="form-field"] {
 
   .social-container {
     width: 30%;
+  } */
+
+  .social-boxes {
+    justify-items: center;
+    grid-gap: 1.8rem;
+  }
+
+  .social-container {
+    justify-content: flex-start;
+    font-size: 1.4rem;
+    padding: 1.4rem 2rem;
+  }
+
+  .social-container .social-image {
+    transform: scale(1.4);
+    margin-right: 2.4rem;
+  }
+
+  .social-container p:nth-child(2) {
+    font-size: 2rem;
+    text-align: center;
   }
 
   /* New Members Section */
