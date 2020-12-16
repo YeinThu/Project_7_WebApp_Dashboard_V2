@@ -611,8 +611,14 @@ select[class="form-field"] {
   }
 
   .social-container .social-image {
-    transform: scale(1.4);
+    height: 100px;
+    flex-basis: 100px;
     margin-right: 2.4rem;
+    width: 100px;
+  }
+
+  .social-container .social-image svg {
+    transform: scale(1.5);
   }
 
   .social-container p:nth-child(2) {
